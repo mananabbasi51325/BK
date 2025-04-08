@@ -1,0 +1,755 @@
+{%- style -%}
+        #mp_relief--{{ section.id }} {
+            position: relative;
+            background-color: {{ section.settings.background_color }};
+            margin: {{ section.settings.desktop_margin }};
+
+            @media (max-width: 991px) {
+                margin: {{ section.settings.mobile_margin }};
+            }
+
+            {% if section.settings.hide_shape %}
+              .section_shape {
+                display:none !important;
+              }
+            {% endif %}
+            .section_shape {
+              width: 100%;
+              max-width: 100%;
+              height: auto;
+              &.shape_mob {
+                display:none;
+              }
+              @media (max-width:767px){
+                &.shape_desktop {
+                  display:none;
+                }
+                &.shape_mob {
+                  display:block
+                }
+              }
+         
+              path {
+                fill: {{ section.settings.background_color }};
+              }
+              &.shape_top {
+                transform: translateY(-98%) ;
+              }
+              &.shape_bottom {
+                transform: translateY(98%);
+              }
+            }
+            .feature_btn {
+                  text-decoration:none;
+                  max-width:182px;
+                  width:100%;
+                  min-height:46px;
+                  display:flex;
+                  align-items:center;
+                  justify-content:center;
+                  font-size:14px;
+                  padding:5px;
+                  border-radius: 100px;
+                  text-transform:uppercase;
+                  border-width:2px;
+                  border-style:solid;
+                  font-weight:500;
+                  margin:0 auto;
+                  letter-spacing: 1px;
+                  transition:.3s all ease;
+                }
+            .container_inner {
+                width: 90%;
+                max-width: 1350px;
+                margin: 0 auto;
+                padding-left: 25px;
+                padding-right: 25px;
+                padding: {{ section.settings.desktop_padding }};
+
+
+                @media (max-width: 991px) {
+                    padding: {{ section.settings.mobile_padding }};
+               }
+
+                @media (max-width: 1024px) {
+                    width: 100%;
+                }
+
+
+                    h1, h2, h3, p, desc, span , .card_desc {
+                        color: {{ section.settings.text_color }};
+                    }
+
+
+                .thumbnail {
+                  text-align:center;
+                  margin-bottom:64px;
+                  img {
+                      max-width:200px;
+                  }
+                }
+                .title {
+                    font-size: {{ section.settings.heading_font_size }}px;
+                    line-height: 110%;
+                    font-weight: 700;
+                    max-width: {{section.settings.heading_width}}px;
+                    margin: 0 auto 24px;
+                    text-transform: uppercase;
+
+                    @media (max-width: 991px) {
+                        font-size: {{ section.settings.heading_font_size_mobile }}px;
+
+                        @media (max-width: 991px) {
+                            max-width: 100%;
+                        }
+                    }
+                }
+
+              .sub_title {
+                  color: {{ section.settings.sub_text_color }};
+                  font-size: {{ section.settings.subheading_font_size }}px;
+                  line-height: 110%;
+                  font-weight: 400;
+                  margin: 0 auto 8px;
+
+                  @media (max-width: 991px) {
+                      font-size: {{ section.settings.subheading_font_size_mobile }}px;
+                  }
+              }
+
+              .desc {
+                  font-size: 20px;
+                  line-height: 150%;
+                  font-weight: 400;
+                  max-width: 856px;
+                  margin: 0 auto;
+                  p {
+                    margin:0;
+                  }
+
+                  strong {
+                      font-weight: 700 !important;
+                  }
+
+                  @media (max-width: 991px) {
+                      font-size: 18px;
+                  }
+
+                  @media (max-width: 768px) {
+                      font-size: 16px;
+                  }
+              }
+              .cards_wrapper {
+                margin:64px 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 24px;
+
+                @media (max-width:991px){
+                  grid-template-columns: repeat(2, 1fr);
+                  grid-template-rows: repeat(2, 1fr);
+                  gap: 48px 16px;
+                }
+                .card_item {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  &:has(a:hover) {
+                      .card_thumbnail {
+                        img {
+                          transform: translateY(-6px) scale(1.1);
+                        }
+                      }
+                  }
+                  .card_thumbnail {
+                      img {
+                        transition:.3s all ease;
+                        max-width:153px;
+                        width:100%;
+                      }
+                  }
+                  h3 {
+                    margin: 24px 0 12px;
+                    font-size: 24px;
+                    line-height: 110%;
+                    text-transform: uppercase;
+                    @media (max-width:576px){
+                      font-size: 20px;
+                    }
+                  }
+                  .card_desc {
+                    font-size:16px;
+                    line-height:150%;
+                    margin:0 0 12px;
+                    flex-grow:1;
+                  }
+                  a {
+                    border-color:#fff;
+                    color:#9f1897;
+                    background-color:#fff;
+                    max-width:157px;
+
+                      &:hover {
+                        background-color:transparent;
+                        color:#fff;
+                      }
+                    }
+                }
+              }
+
+              .ing_cards_wrapper {
+                max-width: 1080px;
+                display: flex;
+                flex-wrap: wrap;
+                row-gap: 24px;
+                margin: 64px auto 0;
+                position: relative;
+                z-index: 2;
+                @media (max-width:767px){
+                  gap:32px;
+                  .slick-dots {
+                    margin: 0 ;
+                    li {
+                      margin: 0 4px;
+                      &.slick-active {
+                        button {
+                          opacity:1;
+                          background-color: #9F1897  !important;
+                        }
+                      }
+                       button {
+                             border-radius: 5px !important;
+                            opacity: 0.5;
+                            background-color: #071F60  !important;
+                            width: 10px !important;
+                            height: 10px !important;
+                      }
+                    }
+                  }
+                }
+                .card_item {
+                  display: flex;
+                  flex-direction: column;
+                  background-color: #F8F8F8;
+                  width: calc(33.3% - 24px);
+                  margin: 0 12px;
+                  padding: 24px;
+                  border-radius:10px;
+                  overflow:hidden;
+                  @media (max-width:991px){
+                    width: calc(50% - 24px);
+                  }
+                  @media (max-width:767px){
+                    cursor:grab;
+                    width: 100%;
+                    margin:0;
+                  }
+                  &:hover {
+                    .card_thumbnail {
+                      img {
+                        transform: scale(1.2) rotate(4deg);
+                         /* transform-origin: top right; */
+                      }
+                    }
+                  }
+                 .card_thumbnail {
+                  position:relative;
+                  padding-bottom: 10px;
+                  background: #fff;
+                  margin: -24px -24px 24px;
+                  overflow:hidden;
+                  display:flex;
+                  &::after {
+                    content:" ";
+                    position:absolute;
+                    bottom:0;
+                    width:100%;
+                    height:-1px;
+                    left:0;
+                    background:#f8f8f8;
+                  }
+                  svg {
+                    position:absolute;
+                    width:100%;
+                    left:0;
+                    bottom: -1px;
+                    box-shadow: 0 5px 0px 5px #f8f8f8;
+                    max-width:100%;
+                    height:auto;
+                  }
+                  img {
+                    width:100%;
+                    transition:.5s all ease;
+                    height:auto;
+                  }
+                 }
+                 .card_title {
+                    font-size:20px;
+                    text-align:center;
+                    font-weight:700;
+                    text-transform:uppercase;
+                    margin: 0 0 4px;
+                  }
+                  .included_products span ,
+                 .card_desc {
+                      font-size: 16px;
+                      font-weight: 400;
+                      line-height: 24px;
+                      text-align:center;
+                      margin:0;
+                 }
+                  .included_products {
+                    margin-top:auto;
+                    padding-top:24px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    span {
+                      color: {{ section.settings.sub_text_color }};
+                      display:inline-block;
+                      margin:0 0 12px;
+                    }
+                    .inner {
+                      display:flex;
+                      flex-wrap:wrap;
+                      gap:12px 6px;
+                      img {
+                          width:60px;
+                          height:60px;
+                          object-fit:contain;
+                          transition:.3s all ease;
+                          object-position:center;
+                          &:hover {
+                            transform:scale(.8);
+                          }
+                      }
+                    }
+                  }
+
+                }
+              }
+
+              .shop_all {
+                text-align:center;
+                a {
+                  border-color:#fff;
+                  color:#fff;
+                  &:hover {
+                    background-color:#fff;
+                    color:#9f1897;
+                  }
+                }
+
+              }
+
+            }
+        }
+{%- endstyle -%}
+
+{% assign roundShapetop = '<svg class="section_shape shape_top shape_desktop" xmlns="http://www.w3.org/2000/svg" width="3006" height="100" viewBox="0 0 3006 100" fill="none"><path d="M0 99.9956C387.819 38.1231 918.16 -0.00439453 1503 -0.00439453C2087.84 -0.00439453 2618.18 38.1231 3006 99.9956H0Z" fill="#E7D9FF"/></svg>' %}
+{% assign roundShapetopmob = '<svg class="section_shape  shape_top shape_mob" xmlns="http://www.w3.org/2000/svg" width="393" height="30" viewBox="0 0 393 30" fill="none"><path d="M0 30C50.7029 11.4383 120.039 0 196.5 0C272.961 0 342.297 11.4383 393 30H0Z" fill="#E7D9FF"/></svg>' %}
+
+{% assign roundShapebottom = '<svg class="section_shape shape_bottom shape_desktop" xmlns="http://www.w3.org/2000/svg" width="3006" height="100" viewBox="0 0 3006 100" fill="none"><path d="M0 -0.00439453C387.819 61.8681 918.16 99.9956 1503 99.9956C2087.84 99.9956 2618.18 61.8681 3006 -0.00439453H0Z" fill="#9F1897"/></svg>' %}
+{% assign roundShapebottommob = '<svg class="section_shape shape_bottom shape_mob" xmlns="http://www.w3.org/2000/svg" width="391" height="31" viewBox="0 0 391 31" fill="none"><path d="M0 0.497559C50.4449 19.0593 119.428 30.4976 195.5 30.4976C271.572 30.4976 340.555 19.0593 391 0.497559H0Z" fill="#9F1897"/></svg>' %}
+<section id="mp_relief--{{ section.id }}" class="mp_stages">
+  {% if section.settings.section_shape == 'top' %}
+    {{ roundShapetop }}
+    {{ roundShapetopmob }}
+  {% endif %}
+  <div class="container_inner">
+    <div class="content">
+      {% if section.settings.image %}
+        <div class="thumbnail">
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '300, 600, 900, 1200, 1500',
+              alt: section.settings.image.alt,
+              class: 'image'
+          }}
+        </div>
+      {% endif %}
+      {% if section.settings.subheading %}
+        <h3 class="sub_title text-center">{{ section.settings.subheading }}</h3>
+      {% endif %}
+      {% if section.settings.heading %}
+        <h2 class="title text-center">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.paragraph %}
+        <div class="desc text-center">{{ section.settings.paragraph }}</div>
+      {% endif %}
+    </div>
+
+    {% assign product = section.blocks | where: 'type', 'product' %}
+    {% if product.size > 0 %}
+      <div class="cards_wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'product' %}
+              <div class="card_item" {{ block.shopify_attributes }}>
+                {% if block.settings.product_image %}
+                  <div class="card_thumbnail">
+                    {{
+                      block.settings.product_image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 600, 900, 1200, 1500',
+                        alt: block.settings.product_image.alt,
+                        class: 'product_image'
+                    }}
+                  </div>
+                {% endif %}
+                <h3 class="card_title">{{ block.settings.product_title }}</h3>
+                <div class="card_desc">{{ block.settings.product_desc }}</div>
+                {% if block.settings.product_btn_url %}
+                  <a class="feature_btn" href="{{block.settings.product_btn_url}}">
+                    {{- block.settings.product_btn_text -}}
+                  </a>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% assign ing_ard = section.blocks | where: 'type', 'ing-card' %}
+    {% if ing_ard.size > 0 %}
+      <div class="ing_cards_wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'ing-card' %}
+              {{ product.metafields.custom.azo_proven_ingredients.value.cards.value.detail | metafield_tag }}
+              {{ product.metafields.custom.azo_proven_ingredients.value.cards.value.detail1 | metafield_tag }}
+              <div class="card_item" {{ block.shopify_attributes }} data-aos="fade-up" data-aos-duration="2000" data-aos-delay="{{ forloop.index | times: 200 }}">
+                {% if block.settings.ing_image %}
+                  <div class="card_thumbnail">
+                    {{
+                      block.settings.ing_image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 600, 900, 1200, 1500',
+                        alt: block.settings.ing_image.alt,
+                        class: 'ing_image'
+                    }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="343" height="26" viewBox="0 0 343 26" fill="none">
+                    <path d="M4.08888e-05 0C44.2522 16.0868 104.767 26 171.5 26C238.233 26 298.748 16.0868 343 0V26H0L4.08888e-05 0Z" fill="#F8F8F8"/>
+                    </svg>
+                  </div>
+                {% endif %}
+                <h3 class="card_title">{{ block.settings.ing_title }}</h3>
+                <div class="card_desc">{{ block.settings.ing_desc }}</div>
+                    {% if   block.settings.ing_product_list != blank %}
+                    <div class="included_products">
+                      <span>Included in</span>
+                      <div class="inner">
+                        {% for product in block.settings.ing_product_list %}
+                          {% if product.metafields.custom.ingredient_image %}
+                            {{ product.metafields.custom.ingredient_image.value | img_url: '100x100' | img_tag: product.images[0].alt }}
+                            {% else %}
+                            {{ product.images[0] | img_url: '100x100' | img_tag: product.images[0].alt }}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                      {% endif  %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.btn_text != blank %}
+      <div class="shop_all ">
+        <a class="feature_btn" href="{{section.settings.btn_url}}">{{ section.settings.btn_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+  {% if section.settings.section_shape == 'bottom' %}
+    {{ roundShapebottom }}
+    {{ roundShapebottommob }}
+  {% endif %}
+</section>
+{% javascript %}
+
+  mobileOnlySlider('.ing_cards_wrapper', true, false, 767);
+
+  function mobileOnlySlider($slidername, $dots, $arrows, $breakpoint) {
+    var slider = $($slidername);
+    var settings = {
+      mobileFirst: true,
+      dots: $dots,
+      fade: true,
+      adaptiveHeight: true,
+      arrows: $arrows,
+      responsive: [
+        {
+          breakpoint: $breakpoint,
+          settings: 'unslick',
+        },
+      ],
+    };
+
+    slider.slick(settings);
+
+    $(window).on('resize', function () {
+      if ($(window).width() > $breakpoint) {
+        return;
+      }
+      if (!slider.hasClass('slick-initialized')) {
+        return slider.slick(settings);
+      }
+    });
+  }
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Menopause Products",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_shape",
+      "label": "Section Shape",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_shape",
+      "label": "Hide Shape",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "heading_width",
+      "min": 20,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Heading Width",
+      "default": 800
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tailored Relief for Every Stage of Your Menopause Journey"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Description",
+      "default": "<p>AZO® Menopause products are designed to tackle the core symptoms of menopause while supporting overall health.* From hot flashes to better sleep, we’ve got you covered. </p>"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Shop Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Shop Button Link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#071F60"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "sub_text_color",
+      "label": "Sub Heading Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (Desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading Font Size (Mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Subheading Font Size (Desktop)",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size_mobile",
+      "label": "Subheading Font Size (Mobile)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section Desktop Spacing",
+      "info": "Enter values in the format: 'top right bottom left' (e.g., '20px 10px 0 2px')."
+    },
+    {
+      "type": "text",
+      "id": "desktop_padding",
+      "label": "Padding",
+      "default": "0 0 0 0"
+    },
+    {
+      "type": "text",
+      "id": "desktop_margin",
+      "label": "Margin",
+      "default": "0 0 0 0"
+    },
+    {
+      "type": "header",
+      "content": "Section Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "mobile_padding",
+      "label": "Padding",
+      "default": "0 0 0 0"
+    },
+    {
+      "type": "text",
+      "id": "mobile_margin",
+      "label": "Margin",
+      "default": "0 0 0 0"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "product_desc",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "product_btn_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "product_btn_url",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "ing-card",
+      "name": "Ingredient Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "ing_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "ing_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "ing_desc",
+          "label": "Description",
+          "default": "<p>Content goes here...</p>"
+        },
+        {
+          "type": "product_list",
+          "id": "ing_product_list",
+          "label": "Included In"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menopause Products",
+      "settings": {
+        "heading": "The Stages of Menopause",
+        "subheading": "Learn more about",
+        "background_color": "#071F60",
+        "text_color": "#fff",
+        "heading_font_size": 56,
+        "heading_font_size_mobile": 32,
+        "subheading_font_size": 42,
+        "subheading_font_size_mobile": 26,
+        "desktop_padding": "160px 0 160px 0",
+        "desktop_margin": "0 0 0 0",
+        "mobile_padding": "90px 0 90px 0",
+        "mobile_margin": "0 0 0 0"
+      }
+    }
+  ]
+}
+{% endschema %}
