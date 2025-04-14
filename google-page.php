@@ -405,7 +405,7 @@
 				<?php 
 				$header_logo = get_field('header_logo');
 				if($header_logo): ?>
-				<a class="header-logo" href="">
+				<a class="header-logo" href="/">
 					<img src="<?php echo esc_url($header_logo['url']); ?>" alt="<?php echo esc_attr($header_logo['alt']); ?>">
 				</a>
 				<?php endif; ?>
@@ -734,7 +734,7 @@
 				}
 			}
 		</style>
-		<section class="packages_section">
+		<section class="packages_section" id="packages_section">
 			<div class="mp_container">
 				<?php 
 				$packages_heading = get_field('packages_heading');
@@ -1085,6 +1085,7 @@
 		<style>
 			.contact_form {
 				background-color:#141414;
+				overflow:hidden;
 				box-shadow: inset 0 2px 1px #ffffff , inset 0 -2px 1px #ffffff;
 				.arch_top , .arch_bottom {
 					width:100%;
@@ -1143,10 +1144,11 @@
 						padding: 4% 8% 1%;
 						box-shadow: 20px 12px 32px #00000017;
 						border-radius: 15px;
-						
+						z-index:2;
 						
 						&:before , &:after {
 							content:" ";
+							z-index:-1;
 							position:absolute;
 							background-image: url(https://www.ploner-communications.com/wp-content/themes/alpha-child/images/gp-shape.png);
 							background-position: center center;
@@ -1156,18 +1158,18 @@
 							opacity: .5;
 						}
 						&:before {
-								width: 50%;
-							height: 600px;
-							transform: rotate(177deg) translateY(0);
-							top: -18%;
-							left: 77%;
+							width: 70%;
+							height: 650px;
+							transform: rotate(280deg) translateY(0);
+							bottom: -15%;
+							left: -24%;
 						}
 							&:after {
-								width: 50%;
-							height: 600px;
-							transform: rotate(177deg) translateY(0);
-							top: -18%;
-							left: 77%;
+								transform: rotate(280deg) translateY(0) scale(-1);
+								top: -15%;
+								right: -24%;
+								width: 76%;
+								height: 650px;
 						}
 						@media (max-width:767px){
 							padding: 40px 20px 0;
@@ -1327,7 +1329,7 @@
 
 			}
 		</style>
-		<section class="contact_form">
+		<section class="contact_form" id="kontakt_us">
 			<?php 
 			$form_heading = get_field('form_heading');
 			$form_description = get_field('form_description');
