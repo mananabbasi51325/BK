@@ -63,6 +63,7 @@
 		}
 
 		.marketing_header {
+
 			padding: 52px 0 32px;
 			@media (max-width:991px){
 			padding: 26px 0;
@@ -181,6 +182,24 @@
 		.mp_hero {
 			position:relative;
 			padding-bottom: 46px;
+			
+			&::after {
+				content:" ";
+				position:absolute;
+				background-image: url(https://www.ploner-communications.com/wp-content/themes/alpha-child/images/gp-shape.png);
+				width: 50%;
+				height: 100%;
+				background-position: center center;
+				background-size: contain;
+				transform: rotate(260deg) translateY(-17%);
+				background-repeat: no-repeat;
+				top: -75%;
+				left: 50%;
+				z-index:-1;
+				@media (max-width:991px){
+					display:none;
+				}
+			}
 			&::before {
 				content:" ";
 				position:absolute;
@@ -230,6 +249,8 @@
 			} 
 			.mp_container {
 				max-width:100%;
+
+
 				.slide img {
 					width:100%;
 				}
@@ -471,9 +492,30 @@
 
 		<style>
 			.packages_section {
+				position:relative;
+				overflow:hidden;
 				padding:80px 0 100px;
 				@media (max-width:991px){
 						padding:60px 0;
+				}
+				&::before {
+					content:" ";
+					position:absolute;
+					background-image: url(https://www.ploner-communications.com/wp-content/themes/alpha-child/images/gp-shape.png);
+					width: 50%;
+					height: 600px;
+					background-position: center center;
+					background-size: contain;
+					transform: rotate(177deg) translateY(0);
+					background-repeat: no-repeat;
+					top: -18%;
+					left: 77%;
+					filter: drop-shadow(0px 0px 0px #C9B583);
+					opacity: .5;
+						@media (max-width:767px){
+						top: -9%;
+						left: 56%;
+					}
 				}
 				h2 {
 					font-weight: 900;
@@ -757,6 +799,7 @@
 		</section>
 		<style>
 			.project_showcase {
+				overflow:hidden;
 				background-color:#141414;
 				box-shadow: inset 0 2px 1px #ffffff , inset 0 -2px 1px #ffffff;
 				.arch_top , .arch_bottom {
@@ -772,8 +815,27 @@
 					display: flex;
 					flex-direction: column;
 					.project_item {
+						position:relative;
+						z-index:2;
+						&::before {
+							content:" ";
+							position:absolute;
+							background-image: url(https://www.ploner-communications.com/wp-content/themes/alpha-child/images/gp-shape.png);
+							width: 100%;
+							height: 600px;
+							background-position: center center;
+							background-size: contain;
+							transform: rotate(0) translateY(0);
+							background-repeat: no-repeat;
+							z-index:-1;
+							top: 0;
+							left: 0;
+							filter: drop-shadow(0px 0px 0px #C9B583);
+							opacity: .5;
+						}
 						img {
 							width:100%;
+							
 						}
 						&:nth-child(n+3) {
 							img {
@@ -788,6 +850,12 @@
 						}
 						&:nth-child(1){
 							width:78%;
+							&::before {
+								height: 106%;
+								transform: rotate(15deg) translateY(0);
+								top: 17px;
+								left: -13%;
+							}
 							@media (max-width:767px){
 								width:92%;
 								padding: 0 0 10%;
@@ -795,6 +863,12 @@
 						}
 						&:nth-child(2){
 							width:47%;
+							&::before {
+								height: 100%;
+								transform: rotate(82deg) translateY(0);
+								top: -53px;
+								left: 75%;
+							}
 								@media (max-width:767px){
 											width:65%;
 								}
@@ -802,6 +876,9 @@
 						&:nth-child(3){
 							width: 49%;
 							padding: 0 7%;
+							&::before {
+								display:none;
+							}
 								@media (max-width:767px){
 									width: 70%;
 									padding: 0 4% 10%;
@@ -810,6 +887,14 @@
 						&:nth-child(4){
 							width: 37%;
 							padding: 0 14% 0 0;
+
+							&::before {
+								transform: rotate(77deg) translateY(0);
+								top: -50px;
+								left: -33%;
+								width: 153%;
+								height: 100%;
+							}
 									@media (max-width:767px){
 								                width: 50%;
 									padding: 0 4% 10%;
@@ -817,6 +902,13 @@
 						}
 						&:nth-child(5){
 							width:44%;
+							&::before {
+								transform: rotate(77deg) translateY(0);
+								top: -20%;
+								left: -65%;
+								width: 144%;
+								height: 144%;
+							}
 								@media (max-width:767px){
 									width: 65%;
 									padding: 10% 0;
@@ -1044,12 +1136,39 @@
 					}
 
 					.form_shortcode {
+						position:relative;
 						max-width: 800px;
 						margin: 90px auto 0;
 						background-color: #fff;
 						padding: 4% 8% 1%;
 						box-shadow: 20px 12px 32px #00000017;
 						border-radius: 15px;
+						
+						
+						&:before , &:after {
+							content:" ";
+							position:absolute;
+							background-image: url(https://www.ploner-communications.com/wp-content/themes/alpha-child/images/gp-shape.png);
+							background-position: center center;
+							background-size: contain;
+							background-repeat: no-repeat;
+							filter: drop-shadow(0px 0px 0px #C9B583);
+							opacity: .5;
+						}
+						&:before {
+								width: 50%;
+							height: 600px;
+							transform: rotate(177deg) translateY(0);
+							top: -18%;
+							left: 77%;
+						}
+							&:after {
+								width: 50%;
+							height: 600px;
+							transform: rotate(177deg) translateY(0);
+							top: -18%;
+							left: 77%;
+						}
 						@media (max-width:767px){
 							padding: 40px 20px 0;
 						}
