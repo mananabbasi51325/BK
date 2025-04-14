@@ -194,7 +194,7 @@
 					width:55%;
 				}
 				@media (max-width:767px){
-					width:85%;
+					width:100%;
 				}
 			}
 			.social-icons {
@@ -320,6 +320,14 @@
 									text-align: center;
 									position: static;
 								}
+							}
+							img {
+								@media (max-width:767px){
+									height: 320px;
+									object-fit: cover;
+									object-position: center center;
+								}
+
 							}
 						}
 					}
@@ -926,8 +934,8 @@
 							line-height: 36px;
 							text-align: center;
 								@media (max-width:767px){
-								font-size: 18px;
-								line-height: 26px;
+								font-size: 16px;
+								line-height: 24px;
 							}
 							p {
 								margin:0;
@@ -935,6 +943,9 @@
 						}
 						.review_tagline {
 							margin:40px 0 0;
+							@media (max-width:767px){
+										margin:25px 0 0;
+							}
 						}
 					}
 				}
