@@ -26,8 +26,8 @@
 
 
 	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
-
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
 	<!-- WP HEAD -->
 
@@ -141,22 +141,28 @@
 						position: static;
 						padding: 0;
 						margin: 14px 0 0;
+						list-style-type:none;
+						display:flex;
+						justify-content: center;
 						li {
 							margin:0 5px;
 							width:auto;
 							height:auto;
+							line-height: 0;
 							&.slick-active {
 								button {
 									background-color:#C9B583;
 								}
 							}
 							button {
+								font-size: 0;
 								margin: 0;
 								padding: 0;
 								width: 7px;
 								height: 7px;
 								border-radius:7px;
 								border: 1px solid #C9B583;
+								cursor: pointer;
 								&::before {
 									display:none;
 								}
@@ -674,6 +680,10 @@
 						height: 50px;
 						background-repeat: no-repeat;
 						background-size: 100% 100%;
+						border: none;
+						background: transparent;
+						cursor: pointer;
+						font-size: 0;
 							&.slick-prev {
 								  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23C9B583' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m15 4l-8 8l8 8'/%3E%3C/svg%3E");
 
@@ -772,7 +782,7 @@
 				.mp_container {
 					padding-top:40px;
 					padding-bottom:120px;
-					h2 {
+					> h2 {
 						font-weight: 700;
 						font-size: 55px;
 						line-height: 60px;
@@ -800,6 +810,94 @@
 						padding: 4% 8% 2%;
 						box-shadow: 20px 12px 32px #00000017;
 						border-radius: 15px;
+						
+						h3,h2 {
+							margin:0 0 40px;
+							font-weight: 800;
+							font-size: 45px;
+							line-height: 50px;
+								color:#C9B583;
+						text-align: center;
+						}
+						form {
+							align-items: center;
+							justify-content: center;
+							flex-wrap: wrap;
+							column-gap: 100px;
+							row-gap: 34px;
+							display: flex;
+							flex-wrap: wrap;
+							max-width: 550px;
+							margin: 0 auto;
+							.field_col {
+								p {
+									margin:0;
+								}
+								br {
+									display:none;
+								}
+								
+								label {
+									width: 100%;
+									margin: 0 0 10px;
+									font-size: 18px;
+									font-weight: 700;
+									text-align:center;
+									color:#1F282A;
+								}
+								input {
+									box-shadow: inset 2px 2px 5px #00000029 !important;
+									border-radius: 27px !important;
+									border: none;
+									background-color: #F8F8F8;
+									font-size: 18px;
+									outline: none;
+									padding: 27px;
+									color: #707070;
+									&::placeholder {
+										color: #707070;
+										opacity: 27%;
+									}
+								}
+								
+								&.field_radio {
+									.wpcf7-radio {
+										display: flex
+											;
+										justify-content: center;
+										gap: 70px;
+									}
+									.wpcf7-list-item  {
+										display:flex;
+										align-items: center;
+										gap: 10px;
+										input {
+											width: 22px;
+											margin: 0;
+											height: 22px;
+											box-shadow: none !important;
+											accent-color: #c9b583;
+											filter: drop-shadow(0px 0px 1px #c9b583);
+										}
+										.wpcf7-list-item-label  {
+											width: 100%;
+											font-size: 18px;
+											font-weight: 700;
+											text-align:center;
+											color:#1F282A;
+										}
+									}
+								
+								}
+								&.col_6 {
+								    width: calc(50% - 50px);
+    align-self: flex-start;
+								}
+								&.col_12 {
+								width:100%;
+								}
+							}
+						}
 					}
 				}
 
@@ -837,16 +935,16 @@
 
 	<footer id="site_footer">
 		<?php if (have_rows('social_icons')) : ?>
-		<div class="social-icons">
-			<?php while (have_rows('social_icons')) : the_row(); ?>
-			<a href="<?php the_sub_field('link'); ?>" target="_blank">
-				<?php 
-				echo '<i class="' . get_sub_field('icon') . '"></i>';
-				the_sub_field('icon');
+			<div class="social-icons">
+				<?php while (have_rows('social_icons')) : the_row(); 
+					$icon = get_sub_field('icon');
+					$link = get_sub_field('link');
 				?>
-			</a>
-			<?php endwhile; ?>
-		</div>
+					<a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener noreferrer">
+						<i class="<?php echo esc_attr($icon); ?>"></i>
+					</a>
+				<?php endwhile; ?>
+			</div>
 		<?php endif; ?>
 	</footer>
 </div>
@@ -856,27 +954,29 @@
 
 <?php wp_footer(); ?>
 	
-		
-<script>
-jQuery(document).ready(function() {
-   $('.slider-container').slick({
-	   arrows: false,
-	   dots: true,
-	   infinite: true,
-	   speed: 300,
-	   slidesToShow: 1,
-	   adaptiveHeight: true
-  });
-	$('.reviews_wrapper').slick({
-	   arrows: true,
-	   dots: false,
-	   infinite: true,
-	   speed: 300,
-	   slidesToShow: 1,
-	   adaptiveHeight: true
-  });
-});
-</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			$('.slider-container').slick({
+				arrows: false,
+				dots: true,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				adaptiveHeight: true
+			});
+			$('.reviews_wrapper').slick({
+				arrows: true,
+				dots: false,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				adaptiveHeight: true
+			});
+		});
+	</script>
+
 </body>
 </html>
 
