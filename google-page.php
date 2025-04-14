@@ -77,11 +77,24 @@
 				.main_menu {
 					flex-grow:1;
 					padding:0 80px 0 50px;
+					overflow:hidden;
+					&.active {
+						ul {
+							transform: translateY(0px);
+							opacity: 1;
+						}
+					}
 					ul {
 						list-style-type:none;
 						display:flex;
 						align-items: center;
 						justify-content: center;
+						transition:.4s all ease;
+
+						@media (min-width:992px){
+							transform: translateY(-40px);
+							opacity: 0;
+						}
 						li {
 							margin:0;
 							&:nth-child(3){
@@ -102,10 +115,21 @@
 					width:20px;
 					height:20px;
 					position:relative;
+					&.active {
+						svg {
+							&:nth-child(1){
+								opacity:0;
+							}
+							&:nth-child(2){
+								opacity:1;
+							}
+						}
+					}
 					svg {
 						width: 100%;
 						max-width: 100%;
 						height:auto;
+						transition:.3s all ease;
 						&:nth-child(2){
 							position:absolute;
 							top:0;
@@ -130,6 +154,31 @@
 				background-color:#141414;
 				z-index:-1;
 			}
+			.social-icons {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				gap: 19px;
+				position: absolute;
+				right: 22px;
+				top: 50%;
+				transform: translateY(-50%);
+				a {
+					border: 1px solid #C9B583;
+					width: 28px;
+					height: 28px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 13px;
+					border-radius: 50px;
+					transition:.5s all ease;
+					&:hover {
+						background-color:#C9B583;
+						color:#fff;
+					}
+				}
+			} 
 			.mp_container {
 				max-width:100%;
 				.slide img {
@@ -289,6 +338,18 @@
 				</div>
 			</div>
 			<?php endif; ?>
+			<?php if (have_rows('social_icons')) : ?>
+			<div class="social-icons">
+				<?php while (have_rows('social_icons')) : the_row(); 
+					$icon = get_sub_field('icon');
+					$link = get_sub_field('link');
+				?>
+					<a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener noreferrer">
+						<i class="<?php echo esc_attr($icon); ?>"></i>
+					</a>
+				<?php endwhile; ?>
+			</div>
+		<?php endif; ?>
 		</section>
 		<section class="company_logos">
 			<?php if(have_rows('logo')): ?>
@@ -807,7 +868,7 @@
 						max-width: 800px;
 						margin: 90px auto 0;
 						background-color: #fff;
-						padding: 4% 8% 2%;
+						padding: 4% 8% 1%;
 						box-shadow: 20px 12px 32px #00000017;
 						border-radius: 15px;
 						
@@ -844,6 +905,9 @@
 									font-weight: 700;
 									text-align:center;
 									color:#1F282A;
+									&.news {
+										text-align:left;
+									}
 								}
 								input {
 									box-shadow: inset 2px 2px 5px #00000029 !important;
@@ -858,6 +922,10 @@
 										color: #707070;
 										opacity: 27%;
 									}
+								}
+								span.wpcf7-not-valid-tip {
+									text-align: center;
+									margin: 0 !important;
 								}
 								
 								&.field_radio {
@@ -897,6 +965,30 @@
 								width:100%;
 								}
 							}
+							
+							.form_submit {
+								width: 100%;
+								display: flex;
+								justify-content: center;
+								p {
+								margin:0;
+									input[type="submit"] {
+										background: #C9B583;
+										border-radius: 40px !important;
+										max-width: 200px;
+										width: 100% !important;
+										text-transform: uppercase;
+										min-height: 60px;
+										font-weight: 900;
+										font-size: 18px;
+										line-height: 1;
+										margin-left: 45px;
+									}
+								}
+							}
+							.wpcf7-response-output {
+								margin: 0;
+							}
 						}
 					}
 				}
@@ -931,7 +1023,31 @@
 			
 		</section>
 	
-	
+	<style>
+		#site_footer {
+			padding: 80px 30px;
+			.social-icons {
+				display: flex;
+				justify-content: center;
+				gap: 7%;
+				a {
+					border: 1px solid #C9B583;
+					width: 50px;
+					height: 50px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 23px;
+					border-radius: 50px;
+						transition:.5s all ease;
+					&:hover {
+						background-color:#C9B583;
+						color:#fff;
+					}
+				}
+			} 
+		}
+	</style>
 
 	<footer id="site_footer">
 		<?php if (have_rows('social_icons')) : ?>
@@ -957,6 +1073,22 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const menuBtn = document.querySelector('.menu_btn');
+			const mainNav = document.querySelector('.main_menu');
+
+			menuBtn.addEventListener('click', function() {
+				this.classList.toggle('active');
+				mainNav.classList.toggle('active');
+			 if (window.innerWidth < 991) {
+				 if (mainNav.classList.contains('active')) {
+					 document.body.style.overflow = 'hidden';
+				 } else {
+					 document.body.style.overflow = '';
+				 }
+			 }
+			});
+		});
 		jQuery(document).ready(function() {
 			$('.slider-container').slick({
 				arrows: false,
